@@ -1,18 +1,23 @@
-const height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1];
-function trap(height) {
-  let first = 0;
-  let trapedWater = 0;
-  let w = 1;
-  for (let second = 1; i < height.length; second++) {
-    let depth = height[first] - height[second];
-    if (depth < 0) {
-      first = second;
+let arrival = [900, 905, 915, 920, 930, 940, 950, 1000, 1015];
+let departure = [910, 930, 925, 1030, 1005, 1200, 1120, 1020, 1130];
+function findMinPlatform(arriavalArr, departureArr) {
+  let trains = [];
+
+  for (let i = 0; i < arriavalArr.length; i++) {
+    if (trains.find((train) => train < arriavalArr[i])) {
+       trains.push(departureArr[i]);
+    
     } else {
-      let volumn = depth * w * 1;
-      trapedWater += volumn;
+     
     }
+     trains.map((train) => {
+        if (train < arriavalArr[i]) {
+          return arriavalArr[i];
+        }
+      });
   }
-  return trapedWater;
+
+  return trains;
 }
 
-console.log(trap(height))
+console.log(findMinPlatform(arrival,departure))
